@@ -18,8 +18,10 @@ namespace chalesh_01.core.Dto
         [EmailAddress]
         public string Email { get; set; } = null!;
         [Required]
+        [Range(1,128)]
         public int Age { get; set; }  // The max length(128) for the "age" field is not logical        
         public string Website { get; set; } = string.Empty;
+
     }
 
     public class UserModelOut
@@ -36,6 +38,8 @@ namespace chalesh_01.core.Dto
         [Required]
         public int Age { get; set; }  // The max length(128) for the "age" field is not logical        
         public string Website { get; set; } = string.Empty;
+        public virtual ICollection<Note> Notes { get; set; } = new HashSet<Note>();
+
     }
 
     public class RandomNumber
@@ -45,7 +49,5 @@ namespace chalesh_01.core.Dto
             Random random = new Random();
             return random.Next(10, 100);
         }
-       
     }
-
 }
