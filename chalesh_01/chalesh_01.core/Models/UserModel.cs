@@ -19,8 +19,7 @@ namespace chalesh_01.core.Models
         [EmailAddress]
         public string Email { get; set; } = null!;
         [Required]
-        [MaxLength(128)]
-        public int Age { get; set; }  // The max length(128) for the "age" field is not logical : logical length 3       
+        public int Age { get; set; }  // The max length(128) for the "age" field is not logical        
         public string Website { get; set; } = string.Empty;
     }
 }
