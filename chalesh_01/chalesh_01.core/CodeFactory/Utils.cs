@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,10 @@ namespace chalesh_01.core.CodeFactory
 {
     public class Utils
     {
-        public static List<UserModelOut> UserList = new List<UserModelOut>();
-        public static List<Note> Notes = new List<Note>();
+        public static ConcurrentQueue<UserModelOut> UserList = new ConcurrentQueue<UserModelOut>();
+        public static ConcurrentQueue<Note> Notes = new ConcurrentQueue<Note>();
+        public static ConcurrentQueue<JObject> ObjList = new ConcurrentQueue<JObject>();
+
         public static bool HasProperty(JObject obj, string propertyName)
         {
             var checkKey = obj.ContainsKey(propertyName);

@@ -43,7 +43,7 @@ namespace chalesh_01.Controllers
             var checkDuplicateEmail = Utils.UserList.Where(u=>u.Email == model.Email).Any();
             if (checkDuplicateEmail) return BadRequest(new { message = "There is a user with this email" });
             var user = _mapper.Map<UserModelOut>(model);                
-            Utils.UserList.Add(user);
+            Utils.UserList.Enqueue(user);
             return Ok(new { result = user });
         }
 
@@ -67,11 +67,12 @@ namespace chalesh_01.Controllers
         {
             var user = Utils.UserList.Where(x => x.id == id).SingleOrDefault();
             if (user == null) return BadRequest(new { message = "User is not exsit" });
-            Utils.UserList.Remove(user);
+            Utils.UserList.TryDequeue(out user);
             var nots = Utils.Notes.Where(x => x.UserId == id).ToList();
             foreach (var item in nots)
             {
-                Utils.Notes.Remove(item);
+                Note? note = item as Note;
+                Utils.Notes.TryDequeue(out note);
             }
             return NoContent();
         }

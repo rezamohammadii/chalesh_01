@@ -39,7 +39,7 @@ namespace chalesh_01.Controllers
         {
             if(note == null) return BadRequest();
             var noteMap = _mapper.Map<Note>(note);
-            Utils.Notes.Add(noteMap);
+            Utils.Notes.Enqueue(noteMap);
             return Ok("Add note");
         }
 
@@ -63,7 +63,7 @@ namespace chalesh_01.Controllers
             if(id == 0) return BadRequest();
             var note = Utils.Notes.Where(n=>n.Id == id).SingleOrDefault();
             if (note == null) return BadRequest("There are no notes with this ID");
-            Utils.Notes.Remove(note);
+            Utils.Notes.Where(x => x.Id == id).Distinct();
             return NoContent();
 
         }
