@@ -13,6 +13,9 @@ namespace chalesh_01.core.Dto
         {
             CreateMap<UserModelIn, UserModelOut>()
             .ReverseMap();
+
+            CreateMap<NoteIn, Note>()
+           .ReverseMap();
         }
         
     }

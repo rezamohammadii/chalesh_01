@@ -1,4 +1,5 @@
-﻿using System;
+﻿using chalesh_01.core.CodeFactory;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace chalesh_01.core.Dto
 
     public class UserModelOut
     {
-        public int id { get; set; } = RandomNumber.RandomId();
+        public int id { get; set; } = Utils.RandomId();
         [Required]
         [MaxLength(128)]
         public string FirstName { get; set; } = null!;
@@ -40,14 +41,5 @@ namespace chalesh_01.core.Dto
         public string Website { get; set; } = string.Empty;
         public virtual ICollection<Note> Notes { get; set; } = new HashSet<Note>();
 
-    }
-
-    public class RandomNumber
-    {
-        public static int RandomId()
-        {
-            Random random = new Random();
-            return random.Next(10, 100);
-        }
     }
 }
