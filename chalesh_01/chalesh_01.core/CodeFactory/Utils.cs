@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using chalesh_01.core.Dto;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace chalesh_01.core.CodeFactory
 {
     public class Utils
     {
+        public static List<UserModelOut> UserList = new List<UserModelOut>();
+        public static List<Note> Notes = new List<Note>();
         public static bool HasProperty(JObject obj, string propertyName)
         {
             var checkKey = obj.ContainsKey(propertyName);
@@ -23,5 +26,10 @@ namespace chalesh_01.core.CodeFactory
             if (value == null) return null;
             return value.ToString();
         }
+        public static int RandomId()
+        {
+            Random random = new Random();
+            return random.Next(10, 100);
+        }       
     }
 }
